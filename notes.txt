@@ -1,0 +1,4 @@
+Java version:  21
+Spring boot version 3.3.2
+
+springsecsection1:  just a project without any Spring security 
