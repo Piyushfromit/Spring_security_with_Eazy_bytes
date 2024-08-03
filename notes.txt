@@ -1,4 +1,8 @@
 Java version:  21
 Spring boot version 3.3.2
 
-springsecsection1:  just a project without any Spring security 
+springsecsection1:  just a project with single username password placed in applicationproperty  file
+
+springsecsection2:  added defaultfilterchain and defined all url in tis with springsecsection1. 
+
+springsecsection3:  added mor then one user in inmemory 
