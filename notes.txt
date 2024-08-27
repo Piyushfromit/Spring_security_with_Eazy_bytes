@@ -11,3 +11,5 @@ springsecsection4:  added customer table role fild in customer table itself. cus
                     and login. 
 
 springsecsection5:  Skipped because it was Same as springsecsection4
+
+springsecsection6:  Used Custom AuthenticationProvider, also learned about Profiles for ataging and production
