@@ -1,5 +1,6 @@
 package com.eazybytes.config;
 
+import com.eazybytes.exceptionhandling.CustomBasicAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -25,8 +26,8 @@ public class ProjectSecurityProdConfig {
                 .requestMatchers("/", "/myAccount", "/myBalance", "/myLoans", "/myCards", "/welcome").authenticated()
                 .requestMatchers("/notices", "/contact", "/error", "/logout", "/register").permitAll());
         http.formLogin(withDefaults());
-//        http.formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer.disable());
-        http.httpBasic(withDefaults());
+        // http.httpBasic(withDefaults());
+        http.httpBasic(httpBasicConfig -> httpBasicConfig.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));     
         return http.build();
     }
 
