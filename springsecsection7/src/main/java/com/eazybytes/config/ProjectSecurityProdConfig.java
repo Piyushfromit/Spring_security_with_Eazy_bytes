@@ -27,7 +27,7 @@ public class ProjectSecurityProdConfig {
                 .requestMatchers("/notices", "/contact", "/error", "/logout", "/register").permitAll());
         http.formLogin(withDefaults());
         // http.httpBasic(withDefaults());
-        http.httpBasic(httpBasicConfig -> httpBasicConfig.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));     
+        http.httpBasic(httpBasicConfig -> httpBasicConfig.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
         return http.build();
     }
 
