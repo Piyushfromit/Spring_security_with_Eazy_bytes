@@ -1,5 +1,6 @@
 package com.eazybytes.config;
 
+import com.eazybytes.exceptionhandling.CustomAccessDeniedHandler;
 import com.eazybytes.exceptionhandling.CustomBasicAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,8 +27,13 @@ public class ProjectSecurityConfig {
                 .requestMatchers("/", "/myAccount", "/myBalance", "/myLoans", "/myCards", "/welcome").authenticated()
                 .requestMatchers("/notices", "/contact", "/error", "/logout", "/register").permitAll());
         http.formLogin(withDefaults());
-       // http.httpBasic(withDefaults());
+        //http.httpBasic(withDefaults());
         http.httpBasic(httpBasicConfig -> httpBasicConfig.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
+        //http.exceptionHandling(exceptionHandlingConfig ->exceptionHandlingConfig.authenticationEntryPoint( new CustomBasicAuthenticationEntryPoint())); // It is an Global Config
+        //http.exceptionHandling(exceptionHandlingConfig ->exceptionHandlingConfig.accessDeniedHandler(new CustomAccessDeniedHandler()));
+        http.exceptionHandling(exceptionHandlingConfig ->exceptionHandlingConfig.accessDeniedHandler(new CustomAccessDeniedHandler()).accessDeniedPage("/errorJspPage"));// for MVC or jsp included project
+
+
         return http.build();
     }
 
