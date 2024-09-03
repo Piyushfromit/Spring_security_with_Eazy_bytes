@@ -21,16 +21,17 @@ public class ProjectSecurityProdConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 
-        http.requiresChannel(requestChannelConfiguration -> requestChannelConfiguration.anyRequest().requiresSecure())
+        http.sessionManagement(sessionManagementConfiguration ->  sessionManagementConfiguration.invalidSessionUrl("/invalidSession").maximumSessions(10).maxSessionsPreventsLogin(true))
+                .requiresChannel(requestChannelConfiguration -> requestChannelConfiguration.anyRequest().requiresSecure())
                 .csrf(csrfConfigurer -> csrfConfigurer.disable())
                 .authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/", "/myAccount", "/myBalance", "/myLoans", "/myCards", "/welcome").authenticated()
-                .requestMatchers("/notices", "/contact", "/error", "/logout", "/register").permitAll());
+                .requestMatchers("/notices", "/contact", "/error", "/logout", "/register", "/invalidSession").permitAll());
         http.formLogin(withDefaults());
         http.httpBasic(httpBasicConfig -> httpBasicConfig.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
         //http.exceptionHandling(exceptionHandlingConfig ->exceptionHandlingConfig.authenticationEntryPoint( new CustomBasicAuthenticationEntryPoint())); // It is an Global Config
-        //http.exceptionHandling(exceptionHandlingConfig ->exceptionHandlingConfig.accessDeniedHandler(new CustomAccessDeniedHandler()));
-        http.exceptionHandling(exceptionHandlingConfig ->exceptionHandlingConfig.accessDeniedHandler(new CustomAccessDeniedHandler()).accessDeniedPage("/errorJspPage"));// for MVC or jsp included project
+        http.exceptionHandling(exceptionHandlingConfig ->exceptionHandlingConfig.accessDeniedHandler(new CustomAccessDeniedHandler()));
+        //http.exceptionHandling(exceptionHandlingConfig ->exceptionHandlingConfig.accessDeniedHandler(new CustomAccessDeniedHandler()).accessDeniedPage("/errorJspPage"));// for MVC or jsp included project
         return http.build();
     }
 
