@@ -2,6 +2,8 @@ package com.eazybytes.eazyschool.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DashboardController {
 
+//    @RequestMapping("/dashboard")
+//    public String displayDashboard(Model model,Authentication authentication) {
+//        if(null != authentication) {
+//            model.addAttribute("username", authentication.getName());
+//            model.addAttribute("roles", authentication.getAuthorities().toString());
+//        }
+//        return "dashboard.html";
+//    }
+
     @RequestMapping("/dashboard")
-    public String displayDashboard(Model model,Authentication authentication) {
+    public String displayDashboard(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(null != authentication) {
             model.addAttribute("username", authentication.getName());
             model.addAttribute("roles", authentication.getAuthorities().toString());
