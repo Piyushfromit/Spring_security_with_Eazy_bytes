@@ -13,3 +13,8 @@ springsecsection4:  added customer table role fild in customer table itself. cus
 springsecsection5:  Skipped because it was Same as springsecsection4
 
 springsecsection6:  Used Custom AuthenticationProvider, also learned about Profiles for ataging and production
+
+springsecsection7:  Used different type of exception handeling, session management, login logout Events in springsecsection7 project, 
+                    And in eazyschool-start: project Used Form login configuration, SpringSecurity with thymeleaf, SecurityContextHolder
+
+springsecsection8:
