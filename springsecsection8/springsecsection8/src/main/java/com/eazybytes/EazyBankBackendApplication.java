@@ -10,4 +10,7 @@ public class EazyBankBackendApplication {
 		SpringApplication.run(EazyBankBackendApplication.class, args);
 	}
 
+
+
+
 }
