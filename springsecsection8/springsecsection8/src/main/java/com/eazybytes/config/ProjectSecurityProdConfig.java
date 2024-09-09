@@ -25,8 +25,8 @@ public class ProjectSecurityProdConfig {
                 .requiresChannel(requestChannelConfiguration -> requestChannelConfiguration.anyRequest().requiresSecure())
                 .csrf(csrfConfigurer -> csrfConfigurer.disable())
                 .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/", "/myAccount", "/myBalance", "/myLoans", "/myCards", "/welcome").authenticated()
-                .requestMatchers("/notices", "/contact", "/error", "/logout", "/register", "/invalidSession").permitAll());
+                    .requestMatchers("/", "/myAccount", "/myBalance", "/myLoans", "/myCards", "/welcome", "/user").authenticated()
+                    .requestMatchers("/notices", "/contact", "/error", "/logout", "/register", "/invalidSession").permitAll());
         http.formLogin(withDefaults());
         http.httpBasic(httpBasicConfig -> httpBasicConfig.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
         //http.exceptionHandling(exceptionHandlingConfig ->exceptionHandlingConfig.authenticationEntryPoint( new CustomBasicAuthenticationEntryPoint())); // It is an Global Config
