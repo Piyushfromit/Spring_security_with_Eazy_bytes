@@ -18,3 +18,5 @@ springsecsection7:  Used different type of exception handeling, session manageme
                     And in eazyschool-start: project Used Form login configuration, SpringSecurity with thymeleaf, SecurityContextHolder
 
 springsecsection8:  Applied CORs (Cross-Origin Resource Sharing) and CSRF(Cross-Site Request Forgery).
+
+springsecsection9:  Applied Authentication and Authorization using a different table authorities. 
