@@ -17,4 +17,4 @@ springsecsection6:  Used Custom AuthenticationProvider, also learned about Profi
 springsecsection7:  Used different type of exception handeling, session management, login logout Events in springsecsection7 project, 
                     And in eazyschool-start: project Used Form login configuration, SpringSecurity with thymeleaf, SecurityContextHolder
 
-springsecsection8:
+springsecsection8:  Applied CORs (Cross-Origin Resource Sharing) and CSRF(Cross-Site Request Forgery).
