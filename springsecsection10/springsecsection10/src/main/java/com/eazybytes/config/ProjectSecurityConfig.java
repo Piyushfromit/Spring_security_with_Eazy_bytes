@@ -40,9 +40,7 @@ public class ProjectSecurityConfig {
 
         http
                 .securityContext(contextConfig -> contextConfig.requireExplicitSave(false))
-
-                .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
-
+                .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)) // ALWAYS is to generate jsession Id always
                 .cors(corsConfig -> corsConfig.configurationSource(new CorsConfigurationSource(){
                     @Override
                     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {

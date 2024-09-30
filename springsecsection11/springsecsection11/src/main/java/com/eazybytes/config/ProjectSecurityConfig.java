@@ -39,9 +39,11 @@ public class ProjectSecurityConfig {
 
 
         http
-                .securityContext(contextConfig -> contextConfig.requireExplicitSave(false))
+                // .securityContext(contextConfig -> contextConfig.requireExplicitSave(false)) //not required when we use jwt token
 
-                .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
+                // .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)) // ALWAYS is to generate jsession Id always
+
+                .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                 .cors(corsConfig -> corsConfig.configurationSource(new CorsConfigurationSource(){
                     @Override

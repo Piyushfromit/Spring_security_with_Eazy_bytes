@@ -23,9 +23,9 @@ public class ContactController {
         return contactRepository.save(contact);
     }
 
-    public String getServiceReqNumber() {
+    public int getServiceReqNumber() {
         Random random = new Random();
         int ranNum = random.nextInt(999999999 - 9999) + 9999;
-        return "SR" + ranNum;
+        return  ranNum;
     }
 }
