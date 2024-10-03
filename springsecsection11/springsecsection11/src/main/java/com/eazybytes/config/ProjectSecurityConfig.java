@@ -2,10 +2,7 @@ package com.eazybytes.config;
 
 import com.eazybytes.exceptionhandling.CustomAccessDeniedHandler;
 import com.eazybytes.exceptionhandling.CustomBasicAuthenticationEntryPoint;
-import com.eazybytes.filter.AuthoritiesLoggingAfterFilter;
-import com.eazybytes.filter.AuthoritiesLoggingAtFilter;
-import com.eazybytes.filter.CsrfCookieFilter;
-import com.eazybytes.filter.RequestValidationBeforeFilter;
+import com.eazybytes.filter.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,14 +35,10 @@ public class ProjectSecurityConfig {
 
         CsrfTokenRequestAttributeHandler csrfTokenRequestAttributeHandler = new CsrfTokenRequestAttributeHandler();
 
-
         http
                 // .securityContext(contextConfig -> contextConfig.requireExplicitSave(false)) //not required when we use jwt token
-
                 // .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)) // ALWAYS is to generate jsession Id always
-
                 .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
                 .cors(corsConfig -> corsConfig.configurationSource(new CorsConfigurationSource(){
                     @Override
                     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
@@ -68,17 +61,18 @@ public class ProjectSecurityConfig {
                 .addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
                 .addFilterAfter(new AuthoritiesLoggingAfterFilter(), BasicAuthenticationFilter.class)
                 .addFilterAt(new AuthoritiesLoggingAtFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
 
                 .sessionManagement(sessionManagementConfiguration ->  sessionManagementConfiguration.invalidSessionUrl("/invalidSession").maximumSessions(10).maxSessionsPreventsLogin(true))
                 .requiresChannel(requestChannelConfiguration -> requestChannelConfiguration.anyRequest().requiresInsecure()) // Only HTTP
                 .authorizeHttpRequests((requests) -> requests
-
                         .requestMatchers( "/myAccount").hasRole("USER")
                         .requestMatchers( "/myBalance").hasAnyRole("USER", "ADMIN")
                         .requestMatchers( "/myLoans").hasRole("USER")
                         .requestMatchers(  "/myCards").hasRole("USER")
                         .requestMatchers( "/user").authenticated()
-                    .requestMatchers( "/notices", "/contact", "/error", "/logout", "/register", "/invalidSession").permitAll());
+                .requestMatchers( "/notices", "/contact", "/error", "/logout", "/register", "/invalidSession").permitAll());
         http.formLogin(withDefaults());
         http.httpBasic(httpBasicConfig -> httpBasicConfig.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
         http.exceptionHandling(exceptionHandlingConfig ->exceptionHandlingConfig.accessDeniedHandler(new CustomAccessDeniedHandler()));
