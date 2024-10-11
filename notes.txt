@@ -23,6 +23,11 @@ springsecsection9:  Applied Authentication and Authorization using a different t
 
 springsecsection10: Applied Filters (addBeforeFilter, afterFilter, atFilter). Best Project without JWT. 
 
-springsecsection11: applied JWT token based authentication. 
+springsecsection11: applied JWT token based authentication (IMPORTANT). 
+
+springsecsection12: applied JWT and Method Level security also.
+
+
+
 
 
