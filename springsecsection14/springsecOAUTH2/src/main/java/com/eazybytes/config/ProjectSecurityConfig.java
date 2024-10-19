@@ -25,29 +25,31 @@ public class ProjectSecurityConfig {
         return httpSecurity.build();
     }
 
-    @Bean
-    ClientRegistrationRepository clientRegistrationRepository() {
-        ClientRegistration github = githubClientRegistration();
-        ClientRegistration facebook = facebookClientRegistration();
-        ClientRegistration google = googleClientRegistration();
-        return new InMemoryClientRegistrationRepository(github, facebook, google);
-    }
 
-    private ClientRegistration githubClientRegistration() {
-        return CommonOAuth2Provider.GITHUB.getBuilder("github").clientId("Ov23liuusAE1LnHYkTuI")
-                .clientSecret("621644ce3ce595b5f0cba0ec1c7fba52e2f42d4b").build();
-    }
+     // First approach
+//    @Bean
+//    ClientRegistrationRepository clientRegistrationRepository() {
+//        ClientRegistration github = githubClientRegistration();
+//        ClientRegistration facebook = facebookClientRegistration();
+//        // ClientRegistration google = googleClientRegistration();
+//        return new InMemoryClientRegistrationRepository(github, facebook);
+//    }
+//
+//    private ClientRegistration githubClientRegistration() {
+//        return CommonOAuth2Provider.GITHUB.getBuilder("github").clientId("Ov23liuusAE1LnHYkTuI")
+//                .clientSecret("621644ce3ce595b5f0cba0ec1c7fba52e2f42d4b").build();
+//    }
+//
+//    private ClientRegistration facebookClientRegistration() {
+//        return CommonOAuth2Provider.FACEBOOK.getBuilder("facebook").clientId("523369313811372")
+//                .clientSecret("918f997f8ad6c250d8fffa1a0965cd4d").build();
+//    }
+//
+//    private ClientRegistration googleClientRegistration() {
+//        return CommonOAuth2Provider.GOOGLE.getBuilder("google").clientId("1078189373595")
+//                .clientSecret("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").build();
+//    }
 
-    private ClientRegistration facebookClientRegistration() {
-        return CommonOAuth2Provider.FACEBOOK.getBuilder("facebook").clientId("974042741122392")
-                .clientSecret("36d48c25c1767d58b3101551513d7e1e").build();
-    }
-
-    private ClientRegistration googleClientRegistration() {
-        return CommonOAuth2Provider.GOOGLE.getBuilder("google").clientId("974042741122392")
-                .clientSecret("36d48c25c1767d58b3101551513d7e1e").build();
-    }
-
-
+    // Second approach in Application.Properties File.
 
 }
