@@ -29,7 +29,9 @@ springsecsection12: applied JWT and Method Level security also.
 
 springsecsection13: Only theory part of OAUTH2
 
-springsecsection14: (New project only Backend) Implementing OAUTH2 using spring security & social logins (Facebook, github).
+springsecsection14: (New project only Backend) Implementing Social login Oauth Server (Facebook, github) with spring security.
+
+springsecsection15:
 
 
 
