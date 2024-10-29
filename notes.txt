@@ -31,7 +31,9 @@ springsecsection13: Only theory part of OAUTH2
 
 springsecsection14: (New project only Backend) Implementing Social login Oauth Server (Facebook, github) with spring security.
 
-springsecsection15:
+springsecsection15: Used third party auth server so i scaped this section.
+
+
 
 
 
