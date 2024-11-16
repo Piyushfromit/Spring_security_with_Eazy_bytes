@@ -33,8 +33,9 @@ springsecsection14: (New project only Backend) Implementing Social login Oauth S
 
 springsecsection15: Used third party auth server so i scaped this section.
 
-springsecsection16:
+springsecsection16: Used Own auth server so.
 
+Note: Use springsecsection11 for simple login signup project.
 
 
 
